@@ -23,7 +23,7 @@ public class Game extends Application {
     private Pane root;
 
     private Node player;
-    private int numberOfLifes = 3;
+    private int numberOfLifes = 20;
     private List<Node> enemies = new ArrayList<>();
     private List<Node> bullets = new ArrayList<>();
 
@@ -102,7 +102,7 @@ public class Game extends Application {
         for (Node bulletInstance: bullets) {
             if(bulletInstance.getBoundsInParent().intersects(player.getBoundsInParent())) {
                 bulletInstance.setVisible(false);
-                numberOfLifes = numberOfLifes - 1;
+                numberOfLifes--;
                 System.out.println("Game Over!");
             }
             if(bulletInstance.getTranslateY()>300) {
