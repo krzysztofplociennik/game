@@ -9,12 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Game extends Application {
 
@@ -24,15 +25,15 @@ public class Game extends Application {
     private Node player;
     private int numberOfLifes = 3;
     private List<Node> playerBullets = new ArrayList<>();
-    private List<Node> enemies = new ArrayList<>();
+    private Map<Integer, Enemy> enemies = new HashMap<>();
     private List<Node> enemiesBullets = new ArrayList<>();
     private boolean playable = true;
 
     private Image background = new Image("file:resources/background-black.png");
-    private Image playerImage = new Image("file:resources/pixel_ship_blue.png");
-    private Image enemyImage = new Image("file:resources/pixel_ship_red_small_2.png");
-    private Image enemyBulletImage = new Image("file:resources/pixel_laser_red.png");
-    private Image playerBulletImage = new Image("file:resources/pixel_laser_blue.png");
+    private Image playerSprite = new Image("file:resources/pixel_ship_blue.png");
+    private Image enemySprite = new Image("file:resources/pixel_ship_red_small_2.png");
+    private Image enemyBulletSprite = new Image("file:resources/pixel_laser_red.png");
+    private Image playerBulletSprite = new Image("file:resources/pixel_laser_blue.png");
     BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
     BackgroundImage backgroundImage = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
     Background background2 = new Background(backgroundImage);
@@ -43,7 +44,7 @@ public class Game extends Application {
         root.setBackground(new Background(backgroundImage));
 
         player = initPlayer();
-        enemies = initEnemies();
+        enemies = initEnemy();
 
         timer = new AnimationTimer() {
             @Override
@@ -64,7 +65,7 @@ public class Game extends Application {
 
     private Node initPlayer() {
         ImageView player = new ImageView();
-        player.setImage(playerImage);
+        player.setImage(playerSprite);
         player.setFitHeight(30);
         player.setFitWidth(30);
         player.setTranslateX(240);
@@ -74,51 +75,59 @@ public class Game extends Application {
         return player;
     }
 
-    private List initEnemies() {
-        for(int i=0; i<3; i++) {
+    private Map initEnemy() {
+        int position = 1;
+        int position2 = 23;
+        for(int i=0; i<2; i++) {
             for(int j=0; j<11; j++) {
-                ImageView enemy = new ImageView();
-                enemy.setImage(enemyImage);
-                enemy.setRotate(180);
-                enemy.setFitHeight(30);
-                enemy.setFitWidth(30);
-                enemy.setTranslateX(40 + j*40);
-                enemy.setTranslateY(50 + i*50);
-                enemies.add(enemy);
-                root.getChildren().add(enemy);
+                ImageView enemyImage = new ImageView();
+                Enemy enemy = new Enemy(enemyImage, false);
+                enemyImage.setImage(enemySprite);
+                enemyImage.setRotate(180);
+                enemyImage.setFitHeight(30);
+                enemyImage.setFitWidth(30);
+                enemyImage.setTranslateX(40 + j*40);
+                enemyImage.setTranslateY(50 + i*50);
+                enemy.setID(position);
+                enemies.put(enemy.getID(), enemy);
+                root.getChildren().add(enemyImage);
+                position++;
+
+            }
+        }
+        for(int k=0; k<1; k++) {
+            for(int l=0; l<11; l++) {
+                ImageView enemyImage = new ImageView();
+                Enemy enemy2 = new Enemy(enemyImage, true);
+                enemyImage.setImage(enemySprite);
+                enemyImage.setRotate(180);
+                enemyImage.setFitHeight(30);
+                enemyImage.setFitWidth(30);
+                enemyImage.setTranslateX(40 + l*40);
+                enemyImage.setTranslateY(150);
+                enemy2.setID(position2);
+                enemies.put(enemy2.getID(), enemy2);
+                root.getChildren().add(enemyImage);
+                position2++;
             }
         }
         return enemies;
     }
     
     private void enemyFire() {
-        for (Node enemyInstance: enemies) {
-                Circle checker = new Circle(2);
-                root.getChildren().add(checker);
-                checker.relocate(enemyInstance.getTranslateX() + 10, enemyInstance.getTranslateY() + 40);
-                checker.setVisible(false);
-                TranslateTransition transition = new TranslateTransition();
-                transition.setDuration(Duration.seconds(0.5));
-                transition.setToY(enemyInstance.getTranslateY() + 15);
-                transition.setNode(checker);
-                transition.play();
-                if (checker.getBoundsInParent().intersects(enemyInstance.getBoundsInParent())) {
-                    //checker.setTranslateX(0);
-                    //checker.relocate(0,0);
-                    //checker.setTranslateY(0);
-                    //System.out.println("YES");
-                } else if(Math.random() * 4444 < 4) {
-                    System.out.println("NO");
+        for (Map.Entry<Integer, Enemy> entry : enemies.entrySet()) {
+            if(entry.getValue().isShootAbility())
+                if(Math.random() * 3333 < 4) {
                     ImageView enemyBullet = new ImageView();
-                    enemyBullet.setImage(enemyBulletImage);
+                    enemyBullet.setImage(enemyBulletSprite);
                     enemyBullet.setFitHeight(15);
                     enemyBullet.setFitWidth(15);
                     root.getChildren().add(enemyBullet);
                     enemiesBullets.add(enemyBullet);
-                    enemyBullet.relocate(enemyInstance.getTranslateX() + 7.5, enemyInstance.getTranslateY() + 20);
+                    enemyBullet.relocate(entry.getValue().getImageView().getTranslateX() + 7.5, entry.getValue().getImageView().getTranslateY() + 20);
                     TranslateTransition transition2 = new TranslateTransition();
                     transition2.setDuration(Duration.seconds(2.5));
-                    transition2.setToY(enemyInstance.getTranslateY() + 400);
+                    transition2.setToY(entry.getValue().getImageView().getTranslateY() + 400);
                     transition2.setNode(enemyBullet);
                     transition2.play();
                 }
@@ -131,15 +140,16 @@ public class Game extends Application {
                 enemyBulletInstance.setVisible(false);
                 enemyBulletInstance.relocate(0,0);
                 numberOfLifes--;
-                System.out.println("A hit! " + numberOfLifes);
             }
         }
         for(Node playerBulletInstance: playerBullets) {
-            for(Node enemyInstance: enemies) {
-                if(playerBulletInstance.getBoundsInParent().intersects((enemyInstance.getBoundsInParent()))) {
-                    enemyInstance.setTranslateX(-800);
-                    enemyInstance.setTranslateY(1000);
-                    enemyInstance.setVisible(false);
+            for(Map.Entry<Integer, Enemy> entry : enemies.entrySet()) {
+                if(playerBulletInstance.getBoundsInParent().intersects((entry.getValue().getImageView().getBoundsInParent()))) {
+                    entry.getValue().getImageView().setTranslateX(-800);
+                    entry.getValue().getImageView().setTranslateY(1000);
+                    entry.getValue().getImageView().setVisible(false);
+                    if(!(entry.getKey()-11<1)) {enemies.get(entry.getKey()-11).setShootAbility(true);}
+                    enemies.remove(entry);
                     playerBulletInstance.setTranslateX(-800);
                     playerBulletInstance.setTranslateY(1000);
                     playerBulletInstance.setVisible(false);
@@ -158,6 +168,10 @@ public class Game extends Application {
         if(numberOfLifes == 0) {
             playable = false;
             timer.stop();
+        }
+        if(enemies.isEmpty()) {
+            System.out.println("You win!");
+            playable = false;
         }
     }
 
@@ -186,7 +200,7 @@ public class Game extends Application {
                 case SPACE:
                     if(playable) {
                         ImageView playerBullet = new ImageView();
-                        playerBullet.setImage(playerBulletImage);
+                        playerBullet.setImage(playerBulletSprite);
                         playerBullet.setFitHeight(15);
                         playerBullet.setFitWidth(15);
                         playerBullet.relocate(player.getTranslateX() + 7.5, player.getTranslateY() - 15);
