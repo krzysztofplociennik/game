@@ -30,20 +30,21 @@ public class Game extends Application {
     private boolean playable = true;
 
     private Image background = new Image("file:resources/background-black.png");
-    private Image playerSprite = new Image("file:resources/pixel_ship_blue.png");
     private Image enemySprite = new Image("file:resources/pixel_ship_red_small_2.png");
     private Image enemyBulletSprite = new Image("file:resources/pixel_laser_red.png");
     private Image playerBulletSprite = new Image("file:resources/pixel_laser_blue.png");
     BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
     BackgroundImage backgroundImage = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-    Background background2 = new Background(backgroundImage);
 
     private Parent createContent() {
         root = new Pane();
         root.setPrefSize(500, 500);
         root.setBackground(new Background(backgroundImage));
 
-        player = initPlayer();
+        Player playerObject = new Player();
+
+        player = playerObject.createPlayer();
+        root.getChildren().add(player);
         enemies = initEnemy();
 
         timer = new AnimationTimer() {
@@ -61,18 +62,6 @@ public class Game extends Application {
         timer.start();
 
         return root;
-    }
-
-    private Node initPlayer() {
-        ImageView player = new ImageView();
-        player.setImage(playerSprite);
-        player.setFitHeight(30);
-        player.setFitWidth(30);
-        player.setTranslateX(240);
-        player.setTranslateY(500 - 39);
-        root.getChildren().add(player);
-
-        return player;
     }
 
     private Map initEnemy() {
@@ -113,7 +102,7 @@ public class Game extends Application {
         }
         return enemies;
     }
-    
+
     private void enemyFire() {
         for (Map.Entry<Integer, Enemy> entry : enemies.entrySet()) {
             if(entry.getValue().isShootAbility())
@@ -178,9 +167,6 @@ public class Game extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
-        BackgroundImage backgroundImage = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        //Background background = new Background(backgroundImage);
 
         root = new Pane();
 
@@ -195,7 +181,7 @@ public class Game extends Application {
                     break;
                 case RIGHT:
                     if(!(player.getTranslateX() > 440)&&playable) {
-                    player.setTranslateX(player.getTranslateX() + 14); }
+                        player.setTranslateX(player.getTranslateX() + 14); }
                     break;
                 case SPACE:
                     if(playable) {
