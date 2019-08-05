@@ -25,10 +25,11 @@ import java.util.*;
 public class Game extends Application {
 
     Pane root;
-    Text scoreText = new Text();
+    Text score = new Text();
+    Text lifesAmount = new Text();
 
     private Node player;
-    private int numberOfLifes = 3;
+    int numberOfLifes = 3;
     private List<Node> playerBullets = new ArrayList<>();
     private boolean playable = true;
     private int points = 0;
@@ -55,8 +56,9 @@ public class Game extends Application {
         player = playerObject.createPlayer();
         lifes = playerObject.createLifes();
         enemies = enemyObject.createEnemy();
+        lifesAmount = playerObject.createRemainingLifesText();
 
-        root.getChildren().addAll(player, scoreText);
+        root.getChildren().addAll(player, score, lifesAmount);
         for (Node node : lifes) {
             root.getChildren().add(node);
         }
@@ -78,10 +80,10 @@ public class Game extends Application {
     }
 
     public void updateScore() {
-        scoreText.relocate(5, 5);
-        scoreText.setText("SCORE: " + points);
-        scoreText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 18));
-        scoreText.setFill(Color.WHITE);
+        score.relocate(5, 5);
+        score.setText("SCORE: " + points);
+        score.setFont(Font.font("Noto Mono", FontWeight.BOLD, 18));
+        score.setFill(Color.WHITE);
     }
 
     private void enemyFire() {
@@ -150,6 +152,7 @@ public class Game extends Application {
         }
         if (numberOfEnemies==0) {
             playable = false;
+            Player.playerVelocity.set(0);
             try {
                 Audio.stopBackgroundMusic();
                 Audio.playWinSound();
@@ -173,7 +176,7 @@ public class Game extends Application {
 
         root = new Pane();
 
-        primaryStage.setTitle("Space Invaders");
+        primaryStage.setTitle("Space Intruders");
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.setResizable(false);
 
@@ -201,8 +204,10 @@ public class Game extends Application {
                 if (event.getCode() == KeyCode.LEFT && playable) {
                     Player.playerVelocity.set(-Player.playerSpeed);
                 }
+                if ((event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN) && playable) {
+                    Player.playerVelocity.set(0);
+                }
                 if (event.getCode() == KeyCode.SPACE && playable) {
-                    Audio.playPlayerShotSound();
                     ImageView playerBullet = new ImageView();
                     playerBullet.setImage(playerBulletSprite);
                     playerBullet.setFitHeight(15);
@@ -215,20 +220,14 @@ public class Game extends Application {
                     transition.setToY(-500);
                     transition.setNode(playerBullet);
                     transition.play();
+                    Audio.playPlayerShotSound();
                 }
                 if (event.getCode() == KeyCode.ESCAPE) {
                     Platform.exit();
                 }
             }
         });
-        primaryStage.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.LEFT) {
-                    Player.playerVelocity.set(0);
-                }
-            }
-        });
+
         primaryStage.show();
     }
 

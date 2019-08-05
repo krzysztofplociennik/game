@@ -1,4 +1,5 @@
 package game;
+
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;

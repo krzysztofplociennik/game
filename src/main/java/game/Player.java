@@ -6,6 +6,10 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import java.util.List;
 
 public class Player extends Game {
@@ -39,6 +43,14 @@ public class Player extends Game {
             lifes.add(heart);
         }
         return lifes;
+    }
+
+    public Text createRemainingLifesText() {
+        lifesAmount.relocate(390, 10);
+        lifesAmount.setText("LIFES: ");
+        lifesAmount.setFont(Font.font("Noto Mono", FontWeight.BOLD, 16));
+        lifesAmount.setFill(Color.WHEAT);
+        return lifesAmount;
     }
 
 }
