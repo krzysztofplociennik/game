@@ -88,7 +88,7 @@ public class Game extends Application {
 
     private void enemyFire() {
         for (Map.Entry<Integer, Enemy> entry : enemies.entrySet()) {
-            if (entry.getValue().isShootAbility() && Math.random() * 4444 < 4) {
+            if (entry.getValue().isShootAbility() && Math.random() * 4446 < 4) {
                 ImageView enemyBullet = new ImageView();
                 enemyBullet.setImage(enemyBulletSprite);
                 enemyBullet.setFitHeight(15);

@@ -1,66 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13d73f8b-9352-4604-af01-f905f9c11ac4" name="Default Changelist" comment="">
+    <list default="true" id="670afa75-8255-4fcf-8353-30ffa124167a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/game/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/game/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/game/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/game/Game$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/game/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/game/Game$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/game/Game$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/game/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/game/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Player.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$">
-      <ProjectState />
-    </projectState>
-  </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="game-project" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectId" id="1OivgxhtdG1F7zveB9KSCPbXtji" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -74,79 +30,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="game.Game" />
-      <module name="game-project_main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Game" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="13d73f8b-9352-4604-af01-f905f9c11ac4" name="Default Changelist" comment="" />
-      <created>1563351506869</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1563351506869</updated>
-      <workItem from="1563351527658" duration="72000" />
-      <workItem from="1563351762255" duration="407000" />
-      <workItem from="1563352190793" duration="534000" />
-      <workItem from="1563352978612" duration="1652000" />
-      <workItem from="1563440494459" duration="14032000" />
-      <workItem from="1563455131794" duration="214000" />
-      <workItem from="1563523850453" duration="9418000" />
-      <workItem from="1563577990971" duration="5061000" />
-      <workItem from="1563617752153" duration="5843000" />
-      <workItem from="1563791499748" duration="1213000" />
-      <workItem from="1563837437545" duration="3460000" />
-      <workItem from="1563867601038" duration="6572000" />
-      <workItem from="1563921945835" duration="2100000" />
-      <workItem from="1563949375115" duration="1198000" />
-      <workItem from="1564009139494" duration="1199000" />
-      <workItem from="1564038357339" duration="1843000" />
-      <workItem from="1564061482922" duration="255000" />
-      <workItem from="1564096699987" duration="1514000" />
-      <workItem from="1564213700871" duration="1665000" />
-      <workItem from="1564473024862" duration="255000" />
-      <workItem from="1564473353664" duration="757000" />
-      <workItem from="1564560721631" duration="1510000" />
-      <workItem from="1565002333050" duration="6278000" />
-    </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
